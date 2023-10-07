@@ -1,24 +1,23 @@
 #include <iostream>
 #include <cmath>
-#include <cstdio>
 #include <ctime>
 #include <functional>
 #include <numeric>
 
 bool is_prime(long long n);
-void generate_key(long long& e, long long &d, long long& n);
+void generate_key(long long& e, long long& d, long long& n);
 long long encrypt(long long plaintext, long long e, long long n);
 long long decrypt(long long ciphertext, long long d, long long n);
 long long mod_pow(long long base, long long exponent, long long modulus);
 long long mod_inverse(long long a, long long m);
 
-int main(){
+int main() {
     std::srand(static_cast<long long>(std::time(0)));
 
     long long e, d, n;
     generate_key(e, d, n);
 
-    long long plaintext; 
+    long long plaintext;
     std::cout << "plaintext: ";
     std::cin >> plaintext;
 
@@ -31,15 +30,15 @@ int main(){
     return 0;
 }
 
-bool is_prime(long long n){
-    if(n <= 1) return false;
-    for(long long i = 2; i <= std::sqrt(n); i++){
-        if(n % i == 0) return false;
+bool is_prime(long long n) {
+    if (n <= 1) return false;
+    for (long long i = 2; i <= std::sqrt(n); i++) {
+        if (n % i == 0) return false;
     }
     return true;
 }
 
-void generate_key(long long& e, long long &d, long long& n){
+void generate_key(long long& e, long long& d, long long& n) {
     long long p, q;
     do {
         p = std::rand() % 100 + 1;
@@ -92,15 +91,6 @@ long long mod_pow(long long base, long long exponent, long long modulus) {
     return result;
 }
 
-#define ull unsigned long long
-
-ull int gcd(int a, int b);
-
-ull int lcm(int a, int b);
-
-ull int encrypt(int m, int e, int n);
-
-ull int decrypt(int
 long long encrypt(long long plaintext, long long e, long long n) {
     return mod_pow(plaintext, e, n);
 }
@@ -108,4 +98,3 @@ long long encrypt(long long plaintext, long long e, long long n) {
 long long decrypt(long long ciphertext, long long d, long long n) {
     return mod_pow(ciphertext, d, n);
 }
-
